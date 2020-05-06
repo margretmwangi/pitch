@@ -1,5 +1,5 @@
 from flask import Flask, render_template,redirect,url_for
-from passlib.hash import pbkdf2_sha256
+from flask_login import LoginManager,login_user,current_user,login_required,logout_user
 
 from wtform_fields import *
 from models import *
@@ -14,7 +14,17 @@ app.secret_key ='later'
 app.config['SQLALCHEMY_DATABASE_URI']='postgres://slxchntbrzumdb:6b63f8c71961cbd533796cd453f9c722ff9a4ecd44ee3d724620d96495572a06@ec2-3-222-30-53.compute-1.amazonaws.com:5432/d73usrh8cslhie'
 db = SQLAlchemy(app)
 
+# Configure flask login
+login = LoginManager(app)
+login.init_app(app)
 
+
+@login.user_loader
+def load_user(id):
+
+    return User.query.get(init(id))
+
+    User.query.get(init(id))
 
 @app.route("/",methods=['GET','POST'])
 def index():
@@ -46,8 +56,28 @@ def login():
 
     # Allow login if validation success
     if login_form.validate_on_submit():
-        return "logged in finally"
+        user_object=
+        User.query.filter_by(username=login_form.username.data).first()
+        login_user(user_object)
+        return  redirect(url_for('pitch'))
 
+      
         return render_template("login.html",form=login_form)
+
+        @app.route("/pitch",methods=['GET','POST'])
+        
+        def pitch():
+
+            if  not current_user.username.is authenticated:
+                return "please log in to access the pitch page"
+
+        return "pitch with me"
+
+        @app.route("/logout",methods=['GET'])
+        def logout():
+
+            logout_user()
+            return "logged out successfully"
+
     if __name__ == __main__:
         app.run(debug=True)
