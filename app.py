@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template,redirect,url_for
 from flask_login import LoginManager,login_user,current_user,login_required,logout_user
 
@@ -7,11 +8,11 @@ from models import *
 
 # Configure app
 app = Flask(__name__)
-app.secret_key ='later'
+app.secret_key =os.environ.get("SECRET")
 
 
 # Configure database
-app.config['SQLALCHEMY_DATABASE_URI']='postgres://slxchntbrzumdb:6b63f8c71961cbd533796cd453f9c722ff9a4ecd44ee3d724620d96495572a06@ec2-3-222-30-53.compute-1.amazonaws.com:5432/d73usrh8cslhie'
+app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
 db = SQLAlchemy(app)
 
 # Configure flask login
