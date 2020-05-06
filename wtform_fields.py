@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,SubmitField
 from wtforms.validators import InputRequired,Length,EqualTo,ValidationError
-
+from passlib.hash import pbkdf2_sha256
 from models import User
 
 
@@ -15,7 +15,7 @@ from models import User
       user_object = User.query.filter_by(username=username.data).first()
         if user_object in None:
             raise ValidationError("Username or password is incorrect")
-        elif password_entered !=user_object.password:
+        elif not pbkdf2_sha256.verify (password_entered,user_object.password):
             raise ValidationError("username or password is incorrect")
 
 
