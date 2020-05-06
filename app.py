@@ -23,16 +23,12 @@ def index():
         username =reg_form.username.data
         password = reg_form.password.data
 
-        # Check username exist
-        user_object = User.query.filter_by(username=username).first()
-        if user_object:
-            return "name taken!"
         
         # Add user to DB
         user = User(username=username,password=password)
         db.session.add(user)
         db.session.commit()
-        return "good work"
+        return "inserted into db"
 
     return render_template("index.html",form=reg_form)
 
