@@ -45,6 +45,8 @@ def index():
         user = User(username=username,password=password)
         db.session.add(user)
         db.session.commit()
+
+        flash('Registered successfully.Please log in.','success')
         return redirect (url_for(login)
 
          return render_template("index.html",form=reg_form)
@@ -69,6 +71,7 @@ def login():
         def pitch():
 
             if  not current_user.username.is authenticated:
+                flash ('Please login', 'danger')
                 return "please log in to access the pitch page"
 
         return "pitch with me"
@@ -77,7 +80,10 @@ def login():
         def logout():
 
             logout_user()
-            return "logged out successfully"
+            flash('You are logged out successfully','success')
+            
+            return redirect (url_for('pitch'))
+
 
     if __name__ == __main__:
         app.run(debug=True)

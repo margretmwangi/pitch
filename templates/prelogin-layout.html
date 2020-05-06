@@ -6,6 +6,15 @@
     <title>{% block title %}{% endblock %} Rpitch</title>
 </head>
 <body>
+    <!--Flash messages -->
+    {% with messages = get_flashed_messages(with _categories=true) %}
+      {% if message %}
+      Category:{{ messages[0][0]}}
+   
+      {{ messages [0][1] }}
+
+    {% endwith%}
+
     {% block content %}
     
     {% endblock %}
