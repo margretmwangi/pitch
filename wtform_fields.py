@@ -6,14 +6,6 @@ from models import User
 
 
  
-   # check credentials  are valid 
-
-    user_object = User.query.filter_by(username=username.data).first()
-    if  user_object in None :
-        raise ValidationError('username or password is  invalid ')
-    elif password_entered != user_object.password:
-        raise ValidationError('Username or password is invalid ')
-
 
 class RegistrationForm(FlaskForm):
     """Registration form """

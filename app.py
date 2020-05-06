@@ -11,6 +11,8 @@ app.secret_key ='later'
 def index():
 
     reg_form = RegistrationForm()
+    if reg_form.validate_on_submit():
+        return  "am boo"
 
     return render_template("index.html",form=reg_form)
 
