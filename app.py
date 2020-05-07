@@ -38,19 +38,20 @@ def index():
         password = reg_form.password.data
         # Hash password
 
-         hashed_pswd =pbkdf2_sha256.hash(password)
+    hashed_pswd =pbkdf2_sha256.hash(password)
 
 
         
         # Add user to DB
-        user = User(username=username,password=password)
-        db.session.add(user)
-        db.session.commit()
+user = User(username=username,password=password)
+db.session.add(user)
+db.session.commit()
 
-        flash('Registered successfully.Please log in.','success')
-        return redirect (url_for(login)
+flash('Registered successfully.Please log in.','success')
+return redirect (url_for(login)
 
-         return render_template("index.html",form=reg_form)
+
+    return render_template("index.html",form=reg_form)
 
 @app.route("/login",methods=['GET','POST'])
 def login():
