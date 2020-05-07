@@ -1,7 +1,8 @@
 
 
 #  Rpitch 
-####{This application enables one to utilize his/her one minute to express themselves to their best of potential within the 60 seconds given, 07/05/2020
+## Description
+This application enables one to utilize his/her one minute to express themselves to their best of potential within the 60 seconds assigned to them 07/05/2020
 #### By **Mwangi Margaret**
 ## Description
 In life, you only have 60 seconds to impress someone. 1 minute can make or break you. How do we make sure that you use your 1 minute to actually say something meaningful?This application helps users to use that one minute wisely. The users will submit their one minute pitches and other users will vote on them and leave comments 
